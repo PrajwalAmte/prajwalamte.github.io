@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import profilePic from '/Users/prajwalamte/Downloads/Portfolio_Website/project/src/Assets/Profile.jpeg';
 import { motion } from "framer-motion";
 import {
   Github,
@@ -7,7 +8,6 @@ import {
   Terminal,
   Code,
   Globe,
-  Building,
   Users,
   Brain,
   Database,
@@ -164,7 +164,7 @@ function App() {
                 } rounded-3xl rotate-6`}
               ></div>
               <img
-                src="src/Assets/Profile.jpeg"
+                src={profilePic}
                 alt="Prajwal P Amte"
                 className="relative w-full h-full object-cover rounded-3xl shadow-xl"
               />
