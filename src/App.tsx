@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import profilePic from '/Users/prajwalamte/Downloads/Portfolio_Website/project/src/Assets/Profile.jpeg';
+import profilePic from './Assets/Profile.jpeg';
 import { motion } from "framer-motion";
 import {
   Github,
