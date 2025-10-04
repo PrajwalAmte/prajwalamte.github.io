@@ -7,7 +7,7 @@
     "github": "https://github.com/PrajwalAmte",
     "linkedin": "https://www.linkedin.com/in/prajwal-amte/",
     "resumePath": "src/data/prajwalamte@gmail.com.pdf",
-    "profileImage": "src/data/Profile.jpeg"
+    "profileImage": "./data/Profile.jpeg"
   },
   "github": {
     "username": "PrajwalAmte",
