@@ -58,6 +58,32 @@ function App() {
           >
             {portfolioData.personal.name.split(' ').map(name => name[0]).join('')}<span className="text-green-500">.</span>
           </motion.span>
+          <div className="hidden md:flex items-center gap-6">
+            <a 
+              href="#skills" 
+              className={`hover:${isDarkMode ? 'text-green-400' : 'text-green-600'} transition-colors`}
+            >
+              Skills
+            </a>
+            <a 
+              href="#experience" 
+              className={`hover:${isDarkMode ? 'text-green-400' : 'text-green-600'} transition-colors`}
+            >
+              Experience
+            </a>
+            <a 
+              href="#projects" 
+              className={`hover:${isDarkMode ? 'text-green-400' : 'text-green-600'} transition-colors`}
+            >
+              Projects
+            </a>
+            <a 
+              href="#blog" 
+              className={`hover:${isDarkMode ? 'text-green-400' : 'text-green-600'} transition-colors`}
+            >
+              Blog
+            </a>
+          </div>
           <div className="flex items-center gap-4">
             <button
               onClick={toggleDarkMode}
@@ -154,7 +180,7 @@ function App() {
       </header>
 
       {/* Skills Section */}
-      <section className={`container mx-auto px-4 py-20 border-t ${isDarkMode ? 'border-zinc-800' : 'border-zinc-200'}`}>
+      <section id="skills" className={`container mx-auto px-4 py-20 border-t ${isDarkMode ? 'border-zinc-800' : 'border-zinc-200'}`}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -188,7 +214,7 @@ function App() {
       </section>
 
       {/* Experience Section */}
-      <section className={`container mx-auto px-4 py-20 border-t ${isDarkMode ? 'border-zinc-800' : 'border-zinc-200'}`}>
+      <section id="experience" className={`container mx-auto px-4 py-20 border-t ${isDarkMode ? 'border-zinc-800' : 'border-zinc-200'}`}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -224,7 +250,7 @@ function App() {
       </section>
 
       {/* Projects Section */}
-      <section className={`container mx-auto px-4 py-20 border-t ${isDarkMode ? 'border-zinc-800' : 'border-zinc-200'}`}>
+      <section id="projects" className={`container mx-auto px-4 py-20 border-t ${isDarkMode ? 'border-zinc-800' : 'border-zinc-200'}`}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -292,7 +318,9 @@ function App() {
       </section>
 
       {/* Blog Section */}
-      <BlogSection isDarkMode={isDarkMode} githubConfig={portfolioData.github} />
+      <div id="blog">
+        <BlogSection isDarkMode={isDarkMode} githubConfig={portfolioData.github} />
+      </div>
 
       {/* Volunteer Experience */}
       <section className={`container mx-auto px-4 py-20 border-t ${isDarkMode ? 'border-zinc-800' : 'border-zinc-200'}`}>
