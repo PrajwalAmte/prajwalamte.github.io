@@ -1,0 +1,118 @@
+{
+  "personal": {
+    "name": "Prajwal P Amte",
+    "title": "Full Stack Engineer @ Fidelity Investments",
+    "bio": "I enjoy building scalable backend systems and developing data-driven intelligent applications. A tech enthusiast at heart, always eager to learn and adapt to new technologies.",
+    "email": "prajwalamte@gmail.com",
+    "github": "https://github.com/PrajwalAmte",
+    "linkedin": "https://www.linkedin.com/in/prajwal-amte/",
+    "resumePath": "src/data/prajwalamte@gmail.com.pdf",
+    "profileImage": "src/data/Profile.jpeg"
+  },
+  "github": {
+    "username": "PrajwalAmte",
+    "repo": "prajwalamte.github.io",
+    "branch": "main",
+    "blogsPath": "blogs"
+  },
+  "skills": [
+    {
+      "category": "Programming & Tools",
+      "icon": "Code",
+      "items": [
+        "Languages: Java, Python, JavaScript/TypeScript, C/C++, Rust",
+        "IDEs: VS Code, IntelliJ IDEA",
+        "Platforms: Streamlit, Heroku",
+        "Project Management: Jira, Trello",
+        "Version Control & CI/CD: Git, Jenkins, GitHub Actions"
+      ]
+    },
+    {
+      "category": "Frameworks & Infrastructure",
+      "icon": "Brain",
+      "items": [
+        "Frontend: React, AngularJS | Backend: Spring Boot, Node.js",
+        "AI/ML: TensorFlow, LangChain, PyTorch",
+        "Testing: JUnit, Mockito, Insomnia, Postman",
+        "Databases: PostgreSQL, MongoDB, MySQL",
+        "Cloud & Containerization: AWS (Lambda, S3, EC2), Docker"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "company": "Fidelity Investments",
+      "role": "Intern",
+      "location": "Bengaluru, India",
+      "duration": "January 2025 - June 2025",
+      "description": "Currently working in the Cybersecurity domain, contributing to secure backend service development using Spring Boot. Collaborating on full-stack features with AngularJS and managing data using MySQL. Gaining practical exposure to secure software engineering practices and enterprise-level deployment workflows."
+    },
+    {
+      "company": "Research Internship",
+      "role": "Intern",
+      "location": "Remote",
+      "duration": "October 2024 - December 2024",
+      "description": "Conducted research on Network Intrusion Detection Systems (NIDS), exploring anomaly detection techniques and attack classification. Worked on building machine learning models to enhance detection accuracy using real-world network traffic datasets."
+    },
+    {
+      "company": "Fidelity Investments",
+      "role": "Summer Intern",
+      "location": "Bengaluru, India",
+      "duration": "June 2024 - August 2024",
+      "description": "Contributed to writing test cases using JUnit and Mockito and assisted in developing a serverless application with AWS Lambda and Java. Gained experience in software testing and cloud computing."
+    }
+  ],
+  "projects": [
+    {
+      "title": "TaskHive - Task Manager",
+      "description": "A comprehensive task management system built with Spring Boot and Spring Data JPA. Features include task creation with detailed attributes, status tracking, due date management, and user-specific task lists. The application implements RESTful APIs and uses H2 Database for data persistence, with a responsive Thymeleaf-based UI for seamless user interaction.",
+      "tech": ["Spring Boot", "Spring Data JPA", "Thymeleaf", "H2 Database"],
+      "github": "https://github.com/PrajwalAmte/TaskHive",
+      "icon": "FileCode"
+    },
+    {
+      "title": "Federated Learning for ECG",
+      "description": "An innovative healthcare solution implementing federated learning for ECG signal classification using the MIT-BIH dataset. The system enables multiple hospitals to collaboratively train a shared model while keeping patient data private. Features include data preprocessing, CNN model architecture, federated training simulation, and comprehensive model evaluation, achieving high accuracy in arrhythmia detection.",
+      "tech": ["Python", "PyTorch", "CNN", "Federated Learning"],
+      "github": "https://github.com/PrajwalAmte/Federated_Learning",
+      "icon": "Brain"
+    },
+    {
+      "title": "News Analyzer",
+      "description": "A sophisticated web application leveraging LangChain and OpenAI to process and analyze multiple news articles simultaneously. The system features URL-based article extraction, natural language processing for content analysis, and an intelligent query system with source citations. Implements FAISS for efficient vector storage and retrieval, enabling fast and accurate responses to user queries about news content.",
+      "tech": ["Python", "Streamlit", "LangChain", "OpenAI", "FAISS"],
+      "github": "https://github.com/PrajwalAmte/News_Analyser",
+      "icon": "Globe"
+    },
+    {
+      "title": "Sign Language Recognition",
+      "description": "An advanced real-time ASL gesture recognition system utilizing deep learning for accurate sign language interpretation. The project encompasses comprehensive model training on ASL datasets, real-time video processing for gesture capture, and immediate speech conversion of recognized signs. Features include custom CNN architecture, optimized video frame processing, and a user-friendly interface for seamless communication.",
+      "tech": ["Python", "TensorFlow", "OpenCV", "CNN"],
+      "github": "https://github.com/PrajwalAmte/Sign_Language_Recognition",
+      "icon": "Database"
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "IEEE Young Professional Bangalore",
+      "role": "Student Representative",
+      "location": "Bangalore, India",
+      "duration": "2024 - Present",
+      "description": "Help to connect with students and Student branches, organizing impactful events to bridge the gap between academia and industry. Foster collaboration and knowledge sharing within the IEEE community."
+    },
+    {
+      "organization": "IEEE Mysore Subsection",
+      "role": "Student Representative",
+      "location": "Mysuru, India",
+      "duration": "January 2024 - January 2025",
+      "description": "Facilitated collaboration and membership growth among student branches through meetups and initiatives. Revived dormant branches and organized subsection-wide events, fostering communication and leadership."
+    },
+    {
+      "organization": "NIE IEEE Student Branch",
+      "role": "Treasurer",
+      "location": "Mysuru, India",
+      "duration": "November 2023 - December 2024",
+      "description": "Managed finances and supported 90+ events, enhancing operations and member engagement. Strengthened branch visibility and streamlined resource allocation effectively."
+    }
+  ]
+}
