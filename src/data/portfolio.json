@@ -64,10 +64,10 @@
       "icon": "HeartPulse"
     },
     {
-      "title": "Finance Tracker",
-      "description": "Built a full-stack finance management platform with a Spring Boot backend and PostgreSQL database to automate portfolio tracking, analyze expenses, and provide real-time financial insights. Integrated React frontend for seamless user experience.",
-      "tech": ["Spring Boot", "ReactJS", "PostgreSQL"],
-      "github": "https://github.com/PrajwalAmte/Finance_Tracker",
+      "title": "Finora - Finance Tracker",
+      "description": "Developing a modular personal finance management platform with automated investment price tracking (via Yahoo Finance API), dashboard-based expense analytics, and support for SIPs, loans, and manual expense entry. Backend is containerized using Spring Boot and PostgreSQL with Docker Compose, following a service-oriented architecture. Provides clean UI, separated modules for investments and expenses, and supports future extensibility.",
+      "tech": ["Spring Boot", "ReactJS", "PostgreSQL", "Docker", "Yahoo Finance API"],
+      "github": "https://github.com/PrajwalAmte/Finora-FinanceTracker.git",
       "icon": "Wallet"
     },
     {
