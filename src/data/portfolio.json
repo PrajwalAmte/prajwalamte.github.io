@@ -1,13 +1,13 @@
 {
   "personal": {
     "name": "Prajwal P Amte",
-    "title": "Full Stack Engineer @ Fidelity Investments",
-    "bio": "I enjoy building scalable backend systems and developing data-driven intelligent applications. A tech enthusiast at heart, always eager to learn and adapt to new technologies.",
+    "title": "Engineer",
+    "bio": "Building scalable systems at the intersection of cybersecurity and AI. Passionate about creating intelligent applications that solve real-world problems.",
     "email": "prajwalamte@gmail.com",
     "github": "https://github.com/PrajwalAmte",
     "linkedin": "https://www.linkedin.com/in/prajwal-amte/",
     "resumePath": "/prajwalamte@gmail.com.pdf",
-    "profileImage": "/Profile.jpeg"
+    "profileImage": "/Profile.png"
   },
   "github": {
     "username": "PrajwalAmte",
@@ -31,15 +31,22 @@
       "category": "Frameworks & Infrastructure",
       "icon": "Brain",
       "items": [
-        "Frontend: React, AngularJS | Backend: Spring Boot, Node.js",
-        "AI/ML: TensorFlow, LangChain, PyTorch",
-        "Testing: JUnit, Mockito, Insomnia, Postman",
-        "Databases: PostgreSQL, MongoDB, MySQL",
+        "Frontend: React, Vite, AngularJS | Backend: FastAPI, Spring Boot, Node.js",
+        "AI/ML: TensorFlow, LangChain, PyTorch, OpenAI SDK",
+        "Testing: JUnit, Mockito, Pytest, Insomnia, Postman",
+        "Databases: PostgreSQL, MongoDB, MySQL, SQLite, Redis",
         "Cloud & Containerization: AWS (Lambda, S3, EC2), Azure, Docker"
       ]
     }
   ],
   "experience": [
+    {
+      "company": "Fidelity Investments",
+      "role": "Associate Software Engineer",
+      "location": "Bengaluru, India",
+      "duration": "July 2025 - Present",
+      "description": "Working in Enterprise Cybersecurity focusing on Identity and Access Management (IAM). Developing full-stack solutions and implementing AI-driven use cases to enhance security infrastructure and access control mechanisms."
+    },
     {
       "company": "Fidelity Investments",
       "role": "Leap Intern",
@@ -57,11 +64,18 @@
   ],
   "projects": [
     {
-      "title": "Federated ECG Anomaly Detection Using CNNs",
-      "description": "Developed a federated learning framework enabling hospitals to collaboratively train a CNN model on the MIT-BIH Arrhythmia dataset without sharing raw data. Enhanced anomaly detection accuracy while preserving privacy and data compliance.",
-      "tech": ["Python", "PyTorch", "Federated Learning", "CNN"],
-      "github": "https://github.com/PrajwalAmte/Federated_Learning",
-      "icon": "HeartPulse"
+      "title": "Lumen - Document Processing System",
+      "description": "Built a document processing system with FastAPI backend and React/Vite frontend that performs OCR, parsing, and LLM-based extraction on PDFs and images. Implemented async job queue with Redis, structured data extraction, and real-time status tracking with cache-first result delivery.",
+      "tech": ["FastAPI", "React", "Vite", "TypeScript", "Redis", "SQLAlchemy", "Tesseract OCR", "OpenAI SDK"],
+      "github": "https://github.com/PrajwalAmte/Lumen-Medical-Report-Simplifier.git",
+      "icon": "FileText"
+    },
+    {
+      "title": "Aegis InfraGuard - Cloud Infrastructure CLI",
+      "description": "Developed a production-grade CLI tool for cloud infrastructure analysis featuring Terraform configuration parsing, AWS cost estimation for 30+ resource variants, Rego-based policy enforcement, and runtime metrics analysis with statistical anomaly detection and automated rightsizing recommendations.",
+      "tech": ["Python", "Terraform", "Rego", "Pydantic", "Click"],
+      "github": "https://github.com/PrajwalAmte/Aegis",
+      "icon": "Shield"
     },
     {
       "title": "Finora - Finance Tracker",
@@ -76,13 +90,6 @@
       "tech": ["Python", "LangChain", "GenAI", "Streamlit"],
       "github": "https://github.com/PrajwalAmte/QuantScope",
       "icon": "TrendingUp"
-    },
-    {
-      "title": "TaskHive: Smart Task Management System",
-      "description": "A modern task management app combining a Spring Boot backend with an Angular frontend. Features light/dark themes, intuitive UI, and command-line style interactions for advanced users. Designed to boost productivity and usability.",
-      "tech": ["AngularJS", "Spring Boot"],
-      "github": "https://github.com/PrajwalAmte/TaskHive",
-      "icon": "ClipboardCheck"
     }
   ],
   "volunteer": [
