@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { 
   Github, Linkedin, Mail, Terminal, Code, Globe, Building, Users, 
   Brain, Database, Cpu, Download, Sun, Moon, BookText, Award, Briefcase, 
-  Rocket, FileCode, Coffee
+  Rocket, FileCode, Coffee, FileText, Shield, Wallet, TrendingUp
 } from 'lucide-react';
 import portfolioData from './data/portfolio.json';
 import BlogSection from './components/BlogSection';
@@ -14,11 +14,28 @@ function App() {
   // Tech stack icons mapping
   const getTechIcon = (tech: string) => {
     const iconMap: Record<string, JSX.Element> = {
-      'Spring Boot': <Code className="w-4 h-4" />,
+      'Spring Boot': <Rocket className="w-4 h-4" />,
       'Spring Data JPA': <Database className="w-4 h-4" />,
       'Thymeleaf': <Globe className="w-4 h-4" />,
       'H2 Database': <Database className="w-4 h-4" />,
       'Python': <Code className="w-4 h-4" />,
+      'FastAPI': <Globe className="w-4 h-4" />,
+      'React': <Globe className="w-4 h-4" />,
+      'ReactJS': <Globe className="w-4 h-4" />,
+      'Vite': <Rocket className="w-4 h-4" />,
+      'TypeScript': <FileCode className="w-4 h-4" />,
+      'Redis': <Database className="w-4 h-4" />,
+      'SQLAlchemy': <Database className="w-4 h-4" />,
+      'Tesseract OCR': <FileText className="w-4 h-4" />,
+      'OpenAI SDK': <Brain className="w-4 h-4" />,
+      'Terraform': <Building className="w-4 h-4" />,
+      'Rego': <Shield className="w-4 h-4" />,
+      'Pydantic': <Shield className="w-4 h-4" />,
+      'Click': <Terminal className="w-4 h-4" />,
+      'PostgreSQL': <Database className="w-4 h-4" />,
+      'Docker': <Cpu className="w-4 h-4" />,
+      'GenAI': <Brain className="w-4 h-4" />,
+      'Yahoo Finance API': <TrendingUp className="w-4 h-4" />,
       'PyTorch': <Brain className="w-4 h-4" />,
       'CNN': <Cpu className="w-4 h-4" />,
       'Federated Learning': <Users className="w-4 h-4" />,
@@ -38,6 +55,10 @@ function App() {
       'Code': <Code className={`w-6 h-6 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />,
       'Brain': <Brain className={`w-6 h-6 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />,
       'FileCode': <FileCode className={`w-6 h-6 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />,
+      'FileText': <FileText className={`w-6 h-6 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />,
+      'Shield': <Shield className={`w-6 h-6 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />,
+      'Wallet': <Wallet className={`w-6 h-6 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />,
+      'TrendingUp': <TrendingUp className={`w-6 h-6 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />,
       'Globe': <Globe className={`w-6 h-6 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />,
       'Database': <Database className={`w-6 h-6 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
     };
