@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Github, Linkedin, Mail, Terminal, Code, Globe, Building, Users, 
@@ -7,11 +6,10 @@ import {
 } from 'lucide-react';
 import portfolioData from './data/portfolio.json';
 import BlogSection from './components/BlogSection';
+import { useThemeMode } from './hooks/useThemeMode';
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
-
-  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
+  const { isDarkMode, toggleDarkMode } = useThemeMode();
 
   // Tech stack icons mapping
   const getTechIcon = (tech: string) => {
@@ -319,7 +317,7 @@ function App() {
 
       {/* Blog Section */}
       <div id="blog">
-        <BlogSection isDarkMode={isDarkMode} githubConfig={portfolioData.github} />
+        <BlogSection isDarkMode={isDarkMode} />
       </div>
 
       {/* Volunteer Experience */}

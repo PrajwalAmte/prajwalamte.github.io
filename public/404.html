@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script>
+      (function () {
+        var pathname = window.location.pathname;
+        var search = window.location.search ? window.location.search.slice(1).replace(/&/g, '~and~') : '';
+        var redirectPath = '/?/' + pathname.slice(1) + (search ? '&' + search : '') + window.location.hash;
+        window.location.replace(redirectPath);
+      }());
+    </script>
+  </head>
+  <body></body>
+</html>
