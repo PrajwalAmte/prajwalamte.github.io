@@ -7,4 +7,6 @@ export interface BlogPost {
   readingTimeMinutes: number;
   html: string;
   sourcePath: string;
+  externalUrl?: string;
+  coverImage?: string;
 }

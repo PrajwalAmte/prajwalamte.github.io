@@ -27,7 +27,9 @@ const BlogPostPage = () => {
     });
   };
 
-  const sourceUrl = `https://github.com/${portfolioData.github.username}/${portfolioData.github.repo}/blob/${portfolioData.github.branch}/${post.sourcePath}`;
+  const sourceUrl = post.sourcePath
+    ? `https://github.com/${portfolioData.github.username}/${portfolioData.github.repo}/blob/${portfolioData.github.branch}/${post.sourcePath}`
+    : null;
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-black text-white' : 'bg-white text-gray-800'}`}>
@@ -40,7 +42,7 @@ const BlogPostPage = () => {
             }`}
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Blog
+            Back
           </Link>
           <button
             onClick={toggleDarkMode}
@@ -67,15 +69,17 @@ const BlogPostPage = () => {
               <Clock className="w-4 h-4" />
               {post.readingTimeMinutes} min read
             </span>
-            <a
-              href={sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 ${isDarkMode ? 'text-green-400 hover:text-green-300' : 'text-green-700 hover:text-green-600'}`}
-            >
-              <ExternalLink className="w-4 h-4" />
-              Source
-            </a>
+            {!post.externalUrl && sourceUrl && (
+              <a
+                href={sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 ${isDarkMode ? 'text-green-400 hover:text-green-300' : 'text-green-700 hover:text-green-600'}`}
+              >
+                <ExternalLink className="w-4 h-4" />
+                Source
+              </a>
+            )}
           </div>
 
           <h1 className={`text-3xl md:text-4xl font-bold mb-6 ${isDarkMode ? 'text-green-400' : 'text-green-700'}`}>
@@ -99,6 +103,25 @@ const BlogPostPage = () => {
             className={`blog-content ${isDarkMode ? 'blog-content-dark' : 'blog-content-light'}`}
             dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.html) }}
           />
+
+          {post.externalUrl && (
+            <div className={`mt-10 pt-8 border-t ${isDarkMode ? 'border-zinc-700' : 'border-zinc-200'}`}>
+              <p className={`text-sm mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                This is an abridged version. Read the full article on Medium.
+              </p>
+              <a
+                href={post.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium transition-colors ${
+                  isDarkMode ? 'bg-green-400 text-black hover:bg-green-300' : 'bg-green-600 text-white hover:bg-green-500'
+                }`}
+              >
+                Read full article on Medium
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+          )}
         </motion.article>
       </main>
     </div>

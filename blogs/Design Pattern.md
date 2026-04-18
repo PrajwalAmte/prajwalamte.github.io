@@ -1,8 +1,421 @@
+---
+title: "The Architecture Behind Code: A Technical Dive into Design Patterns"
+date: "2025-10-20"
+tags: ["Software Design", "Design Patterns", "Architecture", "Engineering"]
+---
+
 # The Architecture Behind Code: A Technical Dive into Design Patterns
 
-> "Good software doesn't just work — it makes sense."
+> "Write code as if the next developer who maintains it is a violent psychopath who knows where you live."
 
-Every developer has at some point opened a project where nothing seems to fit together. A button's action triggers logic buried three modules away, helper classes instantiate half the system, and every bug fix feels like walking through a minefield.
+It's 11 PM on a Friday. You're staring at a pull request that adds a new payment method to an app. It should be simple — new provider, new credentials, same result. But as you scroll through the diff you realise the charge logic is scattered across six files, the provider is hardcoded in three service classes, and the only way to test it without hitting a real card processor is to pray. Someone, at some point, decided that a few shortcuts were fine. They weren't.
+
+This is what code without architectural intent looks like in production. Not spaghetti you can see — but the invisible accumulation of small, locally-reasonable decisions that didn't talk to each other.
+
+Design patterns exist precisely to prevent this. But they're widely misunderstood — memorised for interviews and applied like decorations, rather than internalised as a way of thinking. This post tries to change that.
+
+---
+
+## What a Design Pattern Actually Is
+
+A design pattern is not a library, not a framework, not a snippet. It is a **named solution to a recurring structural problem in software design**. The word "named" matters more than it looks.
+
+When you name a thing, you can reason about it, debate it, document it, and teach it. The moment you say "we're using a Strategy here," everyone on your team — senior or junior — immediately understands the intent: there are multiple algorithms that can be substituted at runtime, probably behind an interface. You don't need to explain the code. The pattern explains itself.
+
+This is why patterns are sometimes described as a **vocabulary** rather than a technique. They compress architectural conversations. They let teams operate at a higher abstraction level than "look at line 47 of this class."
+
+The GoF book — *Design Patterns: Elements of Reusable Object-Oriented Software* (1994) by Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides — formalised 23 of them. Decades later, most of the codebase you're working in is shaped by these 23 ideas, whether the original authors knew it or not.
+
+---
+
+## Why the Common Misuse Happens
+
+Before diving into the patterns themselves, it's worth naming the most common failure mode: **applying patterns before you understand the problem they solve**.
+
+The Gang of Four were explicit about this. Every pattern in their catalog has three parts: a *context* (when does this apply?), a *problem* (what specifically goes wrong without it?), and a *solution* (the structure that resolves it). Most developers only ever learn the solution part.
+
+The result is pattern addiction — the architectural equivalent of buying a hammer and seeing every problem as a nail. A singleton applied to a class that doesn't need global state. A Factory wrapping a constructor that will never have more than one implementation. An Observer hierarchy built for a system where two classes need to talk, once, at startup.
+
+Over-engineering isn't safer than under-engineering. It's just slower to debug.
+
+The right question before applying a pattern isn't "does this pattern fit here?" It's "what would go wrong in six months without it?"
+
+---
+
+## The Three Families
+
+The 23 GoF patterns fall into three categories, each targeting a different dimension of software design.
+
+---
+
+### Creational Patterns — Controlling How Objects Come to Life
+
+The fundamental problem creational patterns solve: **your code shouldn't need to know how an object gets built**. The moment a class knows which concrete type it's instantiating, you've created a dependency that makes testing painful, extension messy, and change expensive.
+
+#### Factory Method
+
+The Factory Method pattern defines a method for creating an object, but defers which class gets instantiated to subclasses — or, in modern practice, to configuration.
+
+Consider a notification system that needs to send via email, SMS, or push depending on user preference. Without a factory:
+
+```java
+// Tightly coupled — adding WhatsApp means changing this class
+if (prefs.getChannel().equals("EMAIL")) {
+    new EmailNotification().send(message);
+} else if (prefs.getChannel().equals("SMS")) {
+    new SmsNotification().send(message);
+}
+```
+
+Every new channel requires editing this logic. Tests for `OrderService` now implicitly test email dispatch. With a factory:
+
+```java
+public interface Notification {
+    void send(String message);
+}
+
+public class NotificationFactory {
+    public static Notification create(String channel) {
+        return switch (channel) {
+            case "EMAIL" -> new EmailNotification();
+            case "SMS"   -> new SmsNotification();
+            case "PUSH"  -> new PushNotification();
+            default      -> throw new IllegalArgumentException("Unknown channel: " + channel);
+        };
+    }
+}
+
+// Call site — knows nothing about EmailNotification
+Notification n = NotificationFactory.create(user.getPreferredChannel());
+n.send("Your order has shipped.");
+```
+
+Now adding WhatsApp is a three-line change in one file. `OrderService` tests use a stub `Notification`. The coupling is gone.
+
+**You'll find this pattern in:** Spring's `BeanFactory`, JDBC's `DriverManager.getConnection()`, `LoggerFactory.getLogger()` in SLF4J, every plugin system ever built.
+
+#### Builder
+
+Builder addresses the **telescoping constructor anti-pattern** — the situation where a class has so many optional fields that you end up with constructors like `new HttpRequest(url, method, null, null, null, true, 30)`.
+
+```java
+HttpRequest request = new HttpRequest.Builder("https://api.example.com/orders")
+    .method("POST")
+    .header("Authorization", "Bearer " + token)
+    .body(payload)
+    .timeout(Duration.ofSeconds(30))
+    .retryOnFailure(true)
+    .build();
+```
+
+The builder validates preconditions before construction, makes optional parameters explicit, and produces immutable objects. This is standard practice for configuration objects anywhere in a codebase that lives beyond a prototype.
+
+**Real-world use:** `StringBuilder`, `Lombok @Builder`, `OkHttp.Request.Builder`, every modern HTTP or SQL query builder.
+
+#### Singleton
+
+The most overused pattern in existence, and the most dangerous when misapplied. A Singleton ensures a class has exactly one instance and provides a global access point.
+
+Legitimate uses: a thread pool, a logger, a connection pool, a configuration object loaded once from disk.
+
+Illegitimate uses: using it to share mutable state between components because you couldn't be bothered to inject dependencies properly. This creates hidden global state that makes tests order-dependent, parallelism brittle, and bugs nearly impossible to reproduce.
+
+The modern version: don't write Singletons manually. Let your IoC container (Spring, Guice, CDI) manage the lifecycle. `@Singleton` or Spring's default `@Bean` scope gives you the guarantee without the global state risk.
+
+---
+
+### Structural Patterns — Composing Classes Without Breaking Them
+
+Structural patterns govern **how classes and objects are assembled**. Their goal is consistent: make it possible to add, extend, or wrap behaviour without modifying the original class and without creating an inheritance explosion.
+
+#### Adapter
+
+The Adapter pattern converts the interface of one class into the interface another class expects. It's the bridge between two systems that were never designed to talk to each other — which, in real systems, is the normal state of affairs.
+
+Classic example: you're integrating a third-party payment processor whose API looks nothing like your internal `PaymentGateway` interface.
+
+```java
+// Your internal contract
+interface PaymentGateway {
+    PaymentResult charge(BigDecimal amount, String currency, String token);
+}
+
+// Third-party SDK (you can't modify this)
+class StripeClient {
+    StripeCharge createCharge(long amountInCents, String currency, String source) { ... }
+}
+
+// Adapter — translates between the two
+class StripeGatewayAdapter implements PaymentGateway {
+    private final StripeClient stripe;
+
+    public StripeGatewayAdapter(StripeClient stripe) {
+        this.stripe = stripe;
+    }
+
+    @Override
+    public PaymentResult charge(BigDecimal amount, String currency, String token) {
+        long cents = amount.multiply(BigDecimal.valueOf(100)).longValueExact();
+        StripeCharge charge = stripe.createCharge(cents, currency, token);
+        return new PaymentResult(charge.getId(), charge.getStatus());
+    }
+}
+```
+
+Swapping Stripe for Braintree means writing a `BraintreeGatewayAdapter`. Your `OrderService` never changes.
+
+**In the wild:** JDBC drivers are adapters between your generic SQL and vendor-specific wire protocols. `Arrays.asList()` adapts an array to the `List` interface. Every API wrapper is an Adapter.
+
+#### Decorator
+
+Decorator adds behaviour to an object at runtime without modifying the class or creating a subclass. It wraps the object in another object that implements the same interface and adds to it.
+
+The critical distinction from inheritance: Decorator is **composable**. You can stack multiple decorators and change the combination at runtime. Inheritance bakes the feature into the class hierarchy permanently.
+
+```java
+interface DataSource {
+    void write(String data);
+    String read();
+}
+
+class FileDataSource implements DataSource {
+    // raw file I/O
+}
+
+class EncryptionDecorator implements DataSource {
+    private final DataSource wrapped;
+
+    EncryptionDecorator(DataSource source) { this.wrapped = source; }
+
+    @Override
+    public void write(String data) {
+        wrapped.write(encrypt(data));
+    }
+
+    @Override
+    public String read() {
+        return decrypt(wrapped.read());
+    }
+}
+
+class CompressionDecorator implements DataSource {
+    private final DataSource wrapped;
+    // similar pattern, compress/decompress
+}
+
+// Compose at runtime — encrypted + compressed file storage
+DataSource storage = new CompressionDecorator(
+    new EncryptionDecorator(
+        new FileDataSource("orders.dat")
+    )
+);
+```
+
+Each decorator does one thing. The combinations are unlimited. No inheritance required.
+
+**Everywhere in Java I/O:** `BufferedInputStream(new FileInputStream(...))` is literally a Decorator. Spring's `@Transactional` and `@Cacheable` are Decorator-flavoured AOP proxies.
+
+#### Facade
+
+Facade provides a simplified interface to a complex subsystem. Instead of every client needing to coordinate five classes to send an email, a `NotificationFacade` does it behind a single method.
+
+The key design rule: the Facade **hides** complexity without eliminating it. Clients who need the full power of the subsystem can still access it directly. The facade is a convenience, not a mandate.
+
+This is the pattern most commonly used — and least commonly named — in every codebase. Every service class that wraps repository, mapper, validator, and queue publishing behind a single `processOrder()` method is a Facade.
+
+---
+
+### Behavioral Patterns — Managing How Objects Communicate
+
+Behavioral patterns address **how objects collaborate and responsibilities are distributed**. This is where the complexity in real systems lives — not in data structures, but in the coordination between components.
+
+#### Observer
+
+At its core: an object (the subject) maintains a list of dependents (observers) and notifies them automatically when state changes. The subject knows nothing about what the observers do with that notification.
+
+This is the pub/sub model embedded in most modern frameworks:
+
+```java
+// Subject
+class OrderService {
+    private final List<OrderEventListener> listeners = new ArrayList<>();
+
+    public void addListener(OrderEventListener listener) {
+        listeners.add(listener);
+    }
+
+    public void placeOrder(Order order) {
+        // ... core logic ...
+        listeners.forEach(l -> l.onOrderPlaced(order));
+    }
+}
+
+// Observers — each independently handles the event
+class InventoryService implements OrderEventListener {
+    public void onOrderPlaced(Order order) { /* reserve stock */ }
+}
+
+class EmailService implements OrderEventListener {
+    public void onOrderPlaced(Order order) { /* send confirmation */ }
+}
+
+class AnalyticsService implements OrderEventListener {
+    public void onOrderPlaced(Order order) { /* track conversion */ }
+}
+```
+
+`OrderService` doesn't know or care about inventory, email, or analytics. Adding a new reaction to an order requires zero changes to `OrderService`.
+
+**In practice:** Spring's `ApplicationEventPublisher`, Java's `PropertyChangeListener`, JavaScript's `addEventListener`, Kafka consumers, RxJava `Observable` — all Observer in structure.
+
+#### Strategy
+
+Strategy externalises an algorithm behind an interface so that the algorithm can be selected and swapped independently of the client that uses it.
+
+The canonical problem it solves: you have an operation that has multiple valid implementations — sorting, routing, pricing, compression — and you want to select the right one based on runtime context without a wall of if-else.
+
+```java
+interface ShippingStrategy {
+    BigDecimal calculateCost(Order order);
+}
+
+class StandardShipping implements ShippingStrategy {
+    public BigDecimal calculateCost(Order order) { /* flat rate */ }
+}
+
+class ExpressShipping implements ShippingStrategy {
+    public BigDecimal calculateCost(Order order) { /* weight-based */ }
+}
+
+class FreeShippingStrategy implements ShippingStrategy {
+    public BigDecimal calculateCost(Order order) { return BigDecimal.ZERO; }
+}
+
+class ShoppingCart {
+    private ShippingStrategy shippingStrategy;
+
+    public void setShippingStrategy(ShippingStrategy strategy) {
+        this.shippingStrategy = strategy;
+    }
+
+    public BigDecimal getTotal() {
+        return itemsTotal().add(shippingStrategy.calculateCost(toOrder()));
+    }
+}
+```
+
+Adding a `SameDayDelivery` strategy is one new class, zero changes elsewhere.
+
+**In Spring Boot:** sorting algorithms, `Comparator` implementations, Spring Security's `AuthenticationProvider` chain, transaction isolation levels as strategies.
+
+#### Command
+
+Command encapsulates a request as an object, allowing it to be queued, logged, undone, or replayed. The call site doesn't execute the operation — it creates a command object and hands it off.
+
+This decouples *who* wants something done from *what* is actually done and *when*.
+
+```java
+interface Command {
+    void execute();
+    void undo();
+}
+
+class TransferFundsCommand implements Command {
+    private final Account source, destination;
+    private final BigDecimal amount;
+
+    public void execute() {
+        source.debit(amount);
+        destination.credit(amount);
+    }
+
+    public void undo() {
+        destination.debit(amount);
+        source.credit(amount);
+    }
+}
+
+class TransactionQueue {
+    private final Deque<Command> history = new ArrayDeque<>();
+
+    public void execute(Command cmd) {
+        cmd.execute();
+        history.push(cmd);
+    }
+
+    public void undoLast() {
+        if (!history.isEmpty()) history.pop().undo();
+    }
+}
+```
+
+Transactional undo, audit logging, and retry logic all become structurally straightforward.
+
+**Ubiquitous in:** undo/redo systems in editors, database transaction logs, message queue message objects (each message is a serialised Command), Spring Batch steps.
+
+---
+
+## The Patterns You Already Use Without Knowing It
+
+Here's a partial list of where GoF patterns show up in mainstream tooling:
+
+| Framework / Tool | Pattern in Use |
+|---|---|
+| Spring `@Bean` with default scope | Singleton |
+| Spring `BeanFactory`, `ApplicationContext` | Factory Method |
+| Spring `@Transactional`, `@Cacheable` | Decorator (via AOP proxy) |
+| Spring `ApplicationEventPublisher` | Observer |
+| Spring Security `AuthenticationProvider` chain | Chain of Responsibility |
+| Java `BufferedReader(new FileReader(...))` | Decorator |
+| JDBC `DriverManager` | Factory Method + Adapter |
+| `Comparator.comparing().thenComparing()` | Strategy + Decorator chain |
+| React `useState` change notifications | Observer |
+| Kafka consumer groups | Observer |
+| `java.util.Iterator` | Iterator |
+| REST API gateway | Facade |
+
+Patterns aren't academic. They're the structural vocabulary of every serious codebase. You're reading them right now in the tools you use daily — you just haven't had the names.
+
+---
+
+## Modern Extensions: Beyond the GoF
+
+The GoF wrote in the context of mid-90s object-oriented systems. The vocabulary has expanded into distributed and cloud-native architecture, but the underlying logic is identical:
+
+| Modern Context | Pattern | GoF Ancestor |
+|---|---|---|
+| Microservices | API Gateway | Facade |
+| Resilience engineering | Circuit Breaker | Proxy / State |
+| Event sourcing | Event Store | Command + Memento |
+| ML orchestration pipeline | Stage processor | Chain of Responsibility |
+| Feature flag systems | A/B selector | Strategy |
+| Sidecar containers | Transparent extension | Decorator |
+| Service mesh (Istio) | Policy enforcement | Proxy |
+
+The names change. The problems they solve — controlling dependencies, separating concerns, enabling extension without modification — are timeless.
+
+---
+
+## How to Actually Develop Pattern Intuition
+
+Memorising the 23 patterns doesn't make you a better engineer. Recognising the *problems they solve* does. Here's a practical heuristic for each family:
+
+**Creational:** Ask this when you're about to write `new SomeClass()` in the middle of a service method — *Do I need to be the one deciding which class gets created? Or should that decision live somewhere else?*
+
+**Structural:** Ask this when a class is getting long and tangled — *Is this class doing something, or is it managing the wiring between things that should be doing something?* If it's mostly wiring, a structural pattern (Facade, Adapter, Decorator) will clean it up.
+
+**Behavioral:** Ask this when you find yourself writing notification code, conditional algorithm selection, or multi-step orchestration — *Who owns this logic, and what changes if I need to add a new case?* If the answer involves touching multiple existing classes, a behavioral pattern is missing.
+
+---
+
+## Final Thought
+
+The best indicator that you've genuinely understood a design pattern is not that you can implement it from scratch. It's that you can look at a codebase you've never seen before and immediately recognise the structure — and more importantly, recognise the *absence* of structure where a pattern should have been applied.
+
+That recognition is what separates engineers who write features from engineers who shape systems.
+
+Design patterns are how you earn the right to say: "I didn't just make it work — I made it maintainable."
+
 
 The problem isn't bad syntax. It's missing architecture.
 

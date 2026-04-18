@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Calendar, Clock } from 'lucide-react';
+import { BookOpen, Calendar, Clock, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '../data/blogPosts';
 
@@ -82,8 +82,9 @@ const BlogSection: React.FC<BlogSectionProps> = ({ isDarkMode }) => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ scale: 1.02 }}
-              className={`group rounded-lg p-6 transition-all duration-300 ${accentClasses.card}`}
+              className={`group rounded-lg transition-all duration-300 ${accentClasses.card}`}
             >
+              <div className="p-6">
               <div className="flex items-center gap-2 mb-3">
                 <Calendar className={`w-4 h-4 ${accentClasses.text}`} />
                 <span className={`text-sm ${accentClasses.softText}`}>
@@ -117,13 +118,24 @@ const BlogSection: React.FC<BlogSectionProps> = ({ isDarkMode }) => {
                 </div>
               )}
 
-              <div className="flex items-center mt-4">
+              <div className="flex items-center gap-3 mt-4">
                 <Link
                   to={`/blog/${post.slug}`}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${accentClasses.button}`}
                 >
                   Read Post
                 </Link>
+                {post.externalUrl && (
+                  <a
+                    href={post.externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${accentClasses.button}`}
+                  >
+                    Medium <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+              </div>
               </div>
             </motion.article>
           ))}

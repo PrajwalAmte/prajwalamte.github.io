@@ -148,6 +148,12 @@ const collectPosts = async () => {
       const readingTimeMinutes = Math.max(1, Math.ceil(plainText.split(/\s+/).filter(Boolean).length / 220));
       const html = await renderMarkdown(parsed.content);
       const tags = normalizeTags(parsed.data.tags);
+      const externalUrl = typeof parsed.data.externalUrl === 'string' && parsed.data.externalUrl.trim()
+        ? parsed.data.externalUrl.trim()
+        : undefined;
+      const coverImage = typeof parsed.data.coverImage === 'string' && parsed.data.coverImage.trim()
+        ? parsed.data.coverImage.trim()
+        : undefined;
 
       return {
         slug,
@@ -158,6 +164,8 @@ const collectPosts = async () => {
         readingTimeMinutes,
         html,
         sourcePath: `blogs/${fileName}`,
+        ...(externalUrl && { externalUrl }),
+        ...(coverImage && { coverImage }),
       };
     })
   );
