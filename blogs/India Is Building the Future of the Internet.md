@@ -21,7 +21,6 @@ He is not failing. That's the uncomfortable part. Prathik is succeeding — by e
 
 This is not a story about one founder having a bad night. It is a story playing out across thousands of companies in the world's most populous digital economy.
 
----
 
 ## The Numbers That Make Everyone Proud — And Distracted
 
@@ -35,7 +34,6 @@ India produces approximately **1.5 million engineering graduates per year**. Ind
 
 These numbers deserve celebration. But they are also a distraction from a deeper question. Because scale is visible — everyone can see it. Power is structural. And the two are emphatically not the same thing.
 
----
 
 ## The Stack That Determines Everything
 
@@ -57,7 +55,6 @@ Countries don't need to dominate every layer. But they must control the right on
 
 ![India's Digital Tech Stack](/images/blogs/india-building-internet-stack.jpg)
 
----
 
 ## What India Owns: The Honest Accounting
 
@@ -69,7 +66,6 @@ This data has genuine strategic value beyond the applications it currently power
 
 **Applications — genuinely world-class.** Razorpay and PhonePe have demonstrated the ability to scale to hundreds of millions of users at cost structures that Western markets can't replicate. Freshworks and Zoho have built global enterprise software from Chennai and Hyderabad. This isn't catch-up. India's application-layer engineering is world-class, and the rest of the world knows it.
 
----
 
 ## What India Doesn't Own: Where the Leverage Lives
 
@@ -83,7 +79,6 @@ When you don't control compute, you don't control cost. You don't control availa
 
 **The gap between contribution and capture.** India generates the inputs at every layer — behavioural data, engineering talent, application revenue, market scale. The value transformation — training, refining, pricing — happens outside. An AI model trained partly on Indian data earns no revenue for India when it is deployed at scale. An Indian engineer who builds foundational AI infrastructure in a US company creates economic value that accrues to that company's shareholders, not to India's economic output. The gap between those two columns is where India's strategic opportunity — and vulnerability — lives.
 
----
 
 ## Why This Matters More Than It Appears
 
@@ -97,6 +92,5 @@ Building sovereign capability in compute and models is hard, expensive, and requ
 
 The window to change that is open. It won't stay open indefinitely.
 
----
 
 *This is a preview. [Read the full piece on Medium →](https://medium.com/@prajwalamte/india-is-building-the-future-of-the-internet-but-it-may-not-control-it-0f0dec3a3573)*

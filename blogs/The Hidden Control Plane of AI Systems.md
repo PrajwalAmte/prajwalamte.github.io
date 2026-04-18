@@ -23,7 +23,6 @@ What had changed was the *traffic* — and three things in the surrounding infra
 
 The model had done nothing wrong. The failure lived entirely in the infrastructure surrounding it — the system that decided what to send, how much to send, and which model to send it to. That system had no name, no owner, and no documentation.
 
----
 
 ## The Model-Centric Illusion
 
@@ -37,7 +36,6 @@ In production: multiple models at different cost tiers, traffic varying by order
 
 **The scaffolding is the system. The model is one component inside it.**
 
----
 
 ## There's Already a Name for This
 
@@ -47,7 +45,6 @@ AI systems have exactly this structure. The **model** is the data plane. The **c
 
 The critical difference: the Kubernetes control plane was explicitly designed, ships with the product, and has owners. The AI control plane grows organically — a routing rule after the first cost spike, a fallback after the first outage, a cache layer after the second cost event. Nobody designed it. Nobody mapped it.
 
----
 
 ## Six Layers, Each With Its Own Failure Mode
 
@@ -64,7 +61,6 @@ At 500,000 daily requests, a 10% routing error on a 10× cost gap costs ~$330,00
 
 The full piece maps all six in detail: what each controls, how each fails under real traffic, and the exact observability instrumentation that would have caught Saturday's incident before midnight.
 
----
 
 ## Why This Pattern Repeats
 
@@ -75,7 +71,5 @@ The bill comes due in incidents, on the most important day, at the worst possibl
 The teams that build durable AI systems treat the control plane as a first-class engineering concern from day one — not something that grows in the gaps between features, but something with explicit ownership, documentation, and observability.
 
 Name the thing. Then you can own it.
-
----
 
 *This is a preview. [Read the full piece on Medium →](https://medium.com/@prajwalamte/the-hidden-control-plane-of-ai-systems-f66c709a54b0)*
