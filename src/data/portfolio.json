@@ -1,8 +1,8 @@
 {
   "personal": {
     "name": "Prajwal P Amte",
-    "title": "Engineer",
-    "bio": "Building scalable systems at the intersection of cybersecurity and AI. Passionate about creating intelligent applications that solve real-world problems.",
+    "title": "Software Engineer",
+    "bio": "Software engineer building scalable systems across AI, cybersecurity, and infrastructure. Interested in systems engineering, applied AI, developer tooling, and performance-oriented software.",
     "email": "prajwalamte@gmail.com",
     "github": "https://github.com/PrajwalAmte",
     "linkedin": "https://www.linkedin.com/in/prajwal-amte/",
@@ -17,25 +17,25 @@
   },
   "skills": [
     {
-      "category": "Programming & Tools",
+      "category": "Programming & Developer Tools",
       "icon": "Code",
       "items": [
-        "Languages: Java, Python, JavaScript/TypeScript, C/C++, Rust",
-        "IDEs: VS Code, IntelliJ IDEA",
-        "Platforms: Streamlit, Heroku",
-        "Project Management: Jira, Trello",
-        "Version Control & CI/CD: Git, Jenkins, GitHub Actions"
+        "Languages: C++, Python, Java, Rust, JavaScript/TypeScript, Bash",
+        "Build & Development: CMake, VS Code, IntelliJ IDEA",
+        "Version Control: Git, GitHub",
+        "CI/CD & Automation: Jenkins, GitHub Actions",
+        "Engineering Tools: Jira, Postman, Insomnia"
       ]
     },
     {
       "category": "Frameworks & Infrastructure",
       "icon": "Brain",
       "items": [
-        "Frontend: React, Vite, AngularJS | Backend: FastAPI, Spring Boot, Node.js",
-        "AI/ML: TensorFlow, LangChain, PyTorch, OpenAI SDK",
-        "Testing: JUnit, Mockito, Pytest, Insomnia, Postman",
-        "Databases: PostgreSQL, MongoDB, MySQL, SQLite, Redis",
-        "Cloud & Containerization: AWS (Lambda, S3, EC2), Azure, Docker"
+        "Backend: Spring Boot, FastAPI, Node.js | Frontend: React, Vite, Angular",
+        "AI/ML: PyTorch, TensorFlow, LangChain, HuggingFace, OpenAI SDK, ONNX Runtime",
+        "Testing: JUnit, Mockito, Pytest, Catch2",
+        "Databases: PostgreSQL, MySQL, MongoDB, Redis, SQLite",
+        "Cloud & Infrastructure: AWS (Lambda, S3, EC2), Azure, Docker, Kubernetes"
       ]
     }
   ],
@@ -44,75 +44,90 @@
       "company": "Fidelity Investments",
       "role": "Associate Software Engineer",
       "location": "Bengaluru, India",
-      "duration": "July 2025 - Present",
-      "description": "Working in Enterprise Cybersecurity focusing on Identity and Access Management (IAM). Developing full-stack solutions and implementing AI-driven use cases to enhance security infrastructure and access control mechanisms."
+      "duration": "August 2025 - Present",
+      "description": "Building enterprise risk, governance, and compliance platforms using Spring Boot, Angular, PostgreSQL, Docker, and cloud-native engineering practices. Developing AI-assisted risk control systems using LLMs and agentic workflows to automate evidence analysis, control assessment, and compliance monitoring. Engineering backend services and deployment workflows with a focus on reliability, integration, testing, and automation."
     },
     {
       "company": "Fidelity Investments",
-      "role": "Leap Intern",
+      "role": "Leap & Summer Intern",
       "location": "Bengaluru, India",
-      "duration": "January 2025 - June 2025",
-      "description": "Developed a full-stack web application using Spring Boot (Java), Angular, and MySQL, deployed on Microsoft Azure. Contributed to building scalable backend services, integrating frontend features, and ensuring reliable cloud deployment."
-    },
-    {
-      "company": "Fidelity Investments",
-      "role": "Summer Intern",
-      "location": "Bengaluru, India",
-      "duration": "June 2024 - August 2024",
-      "description": "Contributed to writing unit and integration test cases using JUnit and Mockito, and helped develop a serverless application with AWS Lambda and Java. Strengthened understanding of cloud-based backend development and test-driven design."
+      "duration": "June 2024 - June 2025",
+      "description": "Built and tested full-stack applications using Spring Boot, Angular, MySQL, and Azure. Developed serverless automation using AWS Lambda and Java, while maintaining unit and integration test coverage with JUnit and Mockito."
     }
   ],
   "projects": [
     {
+      "title": "Minerva - Modern Chess Engine",
+      "description": "Built a UCI-compliant chess engine in C++20 featuring bitboard move generation, alpha-beta search, iterative deepening, transposition tables, pruning techniques, and hybrid classical/NNUE evaluation. Developed an end-to-end Python and PyTorch pipeline for HalfKP feature extraction, NNUE training, quantization, and cross-language model verification.",
+      "tech": ["C++20", "Python", "PyTorch", "CMake", "NNUE", "Catch2"],
+      "github": "https://github.com/PrajwalAmte/Minerva-A-Modern-Chess-Engine.git",
+      "icon": "Cpu"
+    },
+    {
+      "title": "Calibrate - GPU Training Efficiency Analyzer",
+      "description": "Built a systems-oriented CLI for analyzing GPU training efficiency across NVIDIA and Apple Silicon workloads. Measures real-time Model FLOP Utilization, identifies performance bottlenecks, benchmarks p50/p99 inference latency across multiple runtimes, and estimates fine-tuning costs using GPU pricing data.",
+      "tech": ["Rust", "CUDA", "NVML", "ONNX", "TensorRT", "llama.cpp"],
+      "github": "https://github.com/PrajwalAmte/Calibrate.git",
+      "icon": "Gauge"
+    },
+    {
       "title": "Lumen - Document Processing System",
-      "description": "Built a document processing system with FastAPI backend and React/Vite frontend that performs OCR, parsing, and LLM-based extraction on PDFs and images. Implemented async job queue with Redis, structured data extraction, and real-time status tracking with cache-first result delivery.",
+      "description": "Built a document processing system with a FastAPI backend and React/Vite frontend for OCR, parsing, and LLM-based extraction from PDFs and images. Implemented asynchronous processing with Redis, structured extraction pipelines, and cache-first result delivery with real-time job tracking.",
       "tech": ["FastAPI", "React", "Vite", "TypeScript", "Redis", "SQLAlchemy", "Tesseract OCR", "OpenAI SDK"],
       "github": "https://github.com/PrajwalAmte/Lumen-Medical-Report-Simplifier.git",
       "icon": "FileText"
     },
     {
       "title": "Aegis InfraGuard - Cloud Infrastructure CLI",
-      "description": "Developed a production-grade CLI tool for cloud infrastructure analysis featuring Terraform configuration parsing, AWS cost estimation for 30+ resource variants, Rego-based policy enforcement, and runtime metrics analysis with statistical anomaly detection and automated rightsizing recommendations.",
+      "description": "Developed a CLI for cloud infrastructure analysis featuring Terraform configuration parsing, AWS cost estimation across 30+ resource variants, Rego-based policy enforcement, runtime metrics analysis, statistical anomaly detection, and automated rightsizing recommendations.",
       "tech": ["Python", "Terraform", "Rego", "Pydantic", "Click"],
       "github": "https://github.com/PrajwalAmte/Aegis",
       "icon": "Shield"
     },
     {
       "title": "Finora - Finance Tracker",
-      "description": "Developing a modular personal finance management platform with automated investment price tracking (via Yahoo Finance API), dashboard-based expense analytics, and support for SIPs, loans, and manual expense entry. Backend is containerized using Spring Boot and PostgreSQL with Docker Compose, following a service-oriented architecture. Provides clean UI, separated modules for investments and expenses, and supports future extensibility.",
-      "tech": ["Spring Boot", "ReactJS", "PostgreSQL", "Docker", "Yahoo Finance API"],
+      "description": "Developing a modular personal finance platform with automated investment price tracking, expense analytics, and support for SIPs, loans, investments, and manual expenses. Built with a Spring Boot and PostgreSQL backend using Docker Compose and a React frontend with modular service-oriented architecture.",
+      "tech": ["Spring Boot", "React", "PostgreSQL", "Docker", "Yahoo Finance API"],
       "github": "https://github.com/PrajwalAmte/Finora-FinanceTracker.git",
       "icon": "Wallet"
     },
     {
       "title": "QuantScope",
-      "description": "Designed an AI-powered global market analysis tool combining LangChain and GenAI to generate insights on stocks and macro trends. Implemented interactive charts, real-time data visualization, and technical indicators for investors.",
+      "description": "Designed an AI-powered global market analysis tool using LangChain and generative AI to generate insights across stocks and macroeconomic trends. Implemented interactive charts, market data visualization, and technical indicators for investment analysis.",
       "tech": ["Python", "LangChain", "GenAI", "Streamlit"],
       "github": "https://github.com/PrajwalAmte/QuantScope",
       "icon": "TrendingUp"
     }
   ],
-  "volunteer": [
-    {
-      "organization": "IEEE Young Professional Bangalore",
-      "role": "Student Representative",
-      "location": "Bangalore, India",
-      "duration": "2024 - Present",
-      "description": "Help to connect with students and Student branches, organizing impactful events to bridge the gap between academia and industry. Foster collaboration and knowledge sharing within the IEEE community."
-    },
-    {
-      "organization": "IEEE Mysore Subsection",
-      "role": "Student Representative",
-      "location": "Mysuru, India",
-      "duration": "January 2024 - January 2025",
-      "description": "Facilitated collaboration and membership growth among student branches through meetups and initiatives. Revived dormant branches and organized subsection-wide events, fostering communication and leadership."
-    },
-    {
-      "organization": "NIE IEEE Student Branch",
-      "role": "Treasurer",
-      "location": "Mysuru, India",
-      "duration": "November 2023 - December 2024",
-      "description": "Managed finances and supported 90+ events, enhancing operations and member engagement. Strengthened branch visibility and streamlined resource allocation effectively."
-    }
-  ]
+"volunteer": [
+  {
+    "organization": "IEEE Young Professionals Bangalore",
+    "role": "Treasurer",
+    "location": "Bengaluru, India",
+    "duration": "January 2026 - Present",
+    "description": "Managing financial planning, budgeting, and resource allocation for IEEE Young Professionals Bangalore while supporting professional and technical initiatives across the community."
+  },
+  {
+    "organization": "IEEE Young Professionals Bangalore",
+    "role": "Student Representative",
+    "location": "Bengaluru, India",
+    "duration": "January 2025 - January 2026",
+    "description": "Connected students and IEEE Student Branches with Young Professionals through events and initiatives bridging academia and industry, while supporting collaboration and professional development."
+  },
+  {
+    "organization": "IEEE Mysore Subsection",
+    "role": "Student Representative",
+    "location": "Mysuru, India",
+    "duration": "January 2024 - January 2025",
+    "description": "Facilitated collaboration and membership growth across student branches through meetups and subsection initiatives. Helped revive dormant branches and organize subsection-wide events."
+  },
+  {
+    "organization": "NIE IEEE Student Branch",
+    "role": "Treasurer",
+    "location": "Mysuru, India",
+    "duration": "November 2023 - December 2024",
+    "description": "Managed finances and resource allocation while supporting 90+ technical and professional events. Helped improve branch operations, member engagement, and organizational visibility."
+  }
+]
 }
+
