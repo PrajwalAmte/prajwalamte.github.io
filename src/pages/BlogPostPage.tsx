@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import DOMPurify from 'dompurify';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, ExternalLink, Moon, Sun } from 'lucide-react';
@@ -10,6 +11,18 @@ const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getBlogPostBySlug(slug) : null;
   const { isDarkMode, toggleDarkMode } = useThemeMode();
+
+  useEffect(() => {
+    if (!post) {
+      return undefined;
+    }
+    const previousTitle = document.title;
+    document.title = `${post.title} | ${portfolioData.personal.name}`;
+    window.scrollTo(0, 0);
+    return () => {
+      document.title = previousTitle;
+    };
+  }, [post]);
 
   if (!post) {
     return <Navigate to="/" replace />;
@@ -33,7 +46,7 @@ const BlogPostPage = () => {
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-black text-white' : 'bg-white text-gray-800'}`}>
-      <nav className={`sticky top-0 z-50 backdrop-blur-md bg-opacity-80 border-b ${isDarkMode ? 'border-zinc-800' : 'border-zinc-200'}`}>
+      <nav className={`sticky top-0 z-50 border-b ${isDarkMode ? 'bg-black border-zinc-800' : 'bg-white border-zinc-200'}`}>
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link
             to="/#blog"
@@ -99,7 +112,7 @@ const BlogPostPage = () => {
             </div>
           )}
 
-          <article
+          <div
             className={`blog-content ${isDarkMode ? 'blog-content-dark' : 'blog-content-light'}`}
             dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.html) }}
           />
