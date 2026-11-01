@@ -1,8 +1,8 @@
 {
   "personal": {
     "name": "Prajwal P Amte",
-    "title": "Software Engineer",
-    "bio": "Software engineer at Fidelity Investments building risk, governance and compliance platforms, including AI-assisted controls. I pick up whatever a problem needs and see it through, and I care about systems that are simple to reason about and hold up under pressure.",
+    "title": "Engineer",
+    "bio": "Engineer at Fidelity Investments building risk, governance and compliance platforms, and working on agentic AI use cases. I pick up whatever a problem needs and see it through, and I care about systems that are simple to reason about and hold up under pressure.",
     "email": "prajwalamte@gmail.com",
     "github": "https://github.com/PrajwalAmte",
     "linkedin": "https://www.linkedin.com/in/prajwal-amte/",
@@ -137,7 +137,7 @@
           "duration": "August 2025 - Present",
           "points": [
             "Build enterprise risk, governance and compliance platforms with Spring Boot, Angular, PostgreSQL and Docker.",
-            "Develop AI-assisted risk control systems using LLMs and agentic workflows to automate evidence analysis, control assessment and compliance monitoring.",
+            "Work on agentic AI use cases, building AI-assisted risk control systems with LLMs and agentic workflows that automate evidence analysis, control assessment and compliance monitoring.",
             "Engineer backend services and deployment workflows with a focus on reliability, integration, testing and automation."
           ]
         },

@@ -34,15 +34,15 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ];
 
-const accent = 'text-green-600 dark:text-green-400';
-const muted = 'text-gray-600 dark:text-gray-400';
-const body = 'text-gray-700 dark:text-gray-300';
-const divider = 'border-zinc-200 dark:border-zinc-800';
+const accent = 'text-accent';
+const muted = 'text-muted';
+const body = 'text-body';
+const divider = 'border-rule';
 const section = `container mx-auto px-4 py-20 border-t scroll-mt-16 ${divider}`;
 const iconButton =
-  'p-2 rounded-full bg-zinc-100 dark:bg-zinc-900 hover:bg-green-100 dark:hover:bg-zinc-800 hover:text-green-700 dark:hover:text-green-400 transition-colors';
+  'p-2 rounded-full bg-surface hover:bg-hover hover:text-accent transition-colors';
 const outlineLink =
-  'inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium border border-zinc-300 dark:border-zinc-700 hover:border-green-600 dark:hover:border-green-400 hover:text-green-700 dark:hover:text-green-400 transition-colors';
+  'inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold border border-rule-strong hover:border-accent hover:text-accent transition-colors';
 
 const reveal = {
   initial: { opacity: 0, y: 20 },
@@ -58,7 +58,7 @@ const SectionHeading = ({ icon: Icon, children }: { icon: LucideIcon; children: 
 );
 
 const Chip = ({ children }: { children: string }) => (
-  <span className="px-3 py-1 rounded-full text-sm bg-zinc-200 dark:bg-zinc-800 text-gray-800 dark:text-gray-200">
+  <span className="px-3 py-1 rounded-full text-sm bg-chip text-chip-ink">
     {children}
   </span>
 );
@@ -68,13 +68,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <motion.article
       {...reveal}
-      className="flex flex-col rounded-xl p-6 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-green-600 dark:hover:border-green-400 transition-colors"
+      className="flex flex-col rounded-xl p-6 bg-surface border border-rule hover:border-accent transition-colors"
     >
       <div className="flex items-center gap-3 mb-4">
         <Icon className={`w-6 h-6 flex-shrink-0 ${accent}`} aria-hidden="true" />
         <h3 className="text-xl font-semibold">{project.title}</h3>
       </div>
-      <p className={`mb-6 ${muted}`}>{project.description}</p>
+      <p className={`mb-6 max-w-[65ch] ${muted}`}>{project.description}</p>
       <ul className="flex flex-wrap gap-2 mb-6" aria-label="Technologies">
         {project.tech.map((tech) => (
           <li key={tech}>
@@ -88,7 +88,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
             href={project.website}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium bg-green-600 text-white hover:bg-green-700 dark:bg-green-400 dark:text-black dark:hover:bg-green-300 transition-colors"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold bg-fill text-on-fill hover:bg-fill-hover transition-colors"
             aria-label={`Open ${project.title} live site`}
           >
             <ExternalLink className="w-4 h-4" aria-hidden="true" />
@@ -129,29 +129,29 @@ function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="min-h-screen bg-white text-gray-800 dark:bg-black dark:text-white transition-colors duration-300">
+      <div className="min-h-screen bg-bg text-ink transition-colors duration-300">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-green-600 focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-fill focus:text-on-fill"
         >
           Skip to content
         </a>
 
         <nav
           aria-label="Primary"
-          className={`fixed w-full z-50 bg-white dark:bg-black border-b ${divider}`}
+          className={`fixed w-full z-50 bg-bg border-b ${divider}`}
         >
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="#top" className="text-xl font-bold" aria-label={`${personal.name}, back to top`}>
               {personal.name.split(' ').map((part) => part[0]).join('')}
-              <span className="text-green-500">.</span>
+              <span className="text-accent">.</span>
             </a>
             <div className="hidden md:flex items-center gap-6">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="hover:text-green-600 dark:hover:text-green-400 transition-colors"
+                  className="hover:text-accent transition-colors"
                 >
                   {link.label}
                 </a>
@@ -161,7 +161,7 @@ function App() {
               <button
                 type="button"
                 onClick={toggleDarkMode}
-                className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                className="p-2 rounded-full hover:bg-hover transition-colors"
                 aria-label={isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'}
               >
                 {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -169,7 +169,7 @@ function App() {
               <a
                 href={personal.resumePath}
                 download
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-600 text-white hover:bg-green-700 transition-colors"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-fill text-on-fill hover:bg-fill-hover transition-colors"
                 aria-label="Download resume"
               >
                 <Download className="w-4 h-4" aria-hidden="true" />
@@ -178,7 +178,7 @@ function App() {
               <button
                 type="button"
                 onClick={() => setMenuOpen((open) => !open)}
-                className="md:hidden p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                className="md:hidden p-2 rounded-full hover:bg-hover transition-colors"
                 aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={menuOpen}
                 aria-controls="mobile-menu"
@@ -195,7 +195,7 @@ function App() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="py-3 hover:text-green-600 dark:hover:text-green-400 transition-colors"
+                    className="py-3 hover:text-accent transition-colors"
                   >
                     {link.label}
                   </a>
@@ -219,7 +219,7 @@ function App() {
                   <span className={accent}>.</span>
                 </h1>
                 <p className={`text-xl sm:text-2xl ${muted}`}>{personal.title}</p>
-                <p className={`text-lg ${body}`}>{personal.bio}</p>
+                <p className={`text-lg max-w-[65ch] ${body}`}>{personal.bio}</p>
                 <div className="flex gap-4 mt-2">
                   <a
                     href={personal.github}
@@ -250,7 +250,7 @@ function App() {
                 className="lg:w-1/3"
               >
                 <div className="relative w-64 h-64 mx-auto">
-                  <div className="absolute inset-0 bg-green-500/20 dark:bg-green-400/20 rounded-3xl rotate-6" />
+                  <div className="absolute inset-0 bg-wash-strong rounded-3xl rotate-6" />
                   <img
                     src={personal.profileImage}
                     alt={`Portrait of ${personal.name}`}
@@ -274,7 +274,7 @@ function App() {
                     initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="p-6 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800"
+                    className="p-6 rounded-lg bg-surface border border-rule"
                   >
                     <div className="flex items-center gap-3 mb-6">
                       <Icon className={`w-6 h-6 ${accent}`} aria-hidden="true" />
@@ -313,14 +313,14 @@ function App() {
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-baseline gap-x-4">
                       <h3 className="text-xl font-semibold">{entry.company}</h3>
-                      <span className="text-gray-500">{entry.location}</span>
+                      <span className="text-faint">{entry.location}</span>
                     </div>
                     <div className="mt-6 space-y-8">
                       {entry.roles.map((role) => (
                         <div key={role.role}>
                           <div className="flex flex-wrap items-baseline gap-x-4">
-                            <h4 className={`text-lg font-medium ${muted}`}>{role.role}</h4>
-                            <span className="text-gray-500">{role.duration}</span>
+                            <h4 className={`text-lg font-semibold ${muted}`}>{role.role}</h4>
+                            <span className="text-faint">{role.duration}</span>
                           </div>
                           <ul className={`mt-3 space-y-2 list-disc pl-5 ${body}`}>
                             {role.points.map((point) => (
@@ -364,16 +364,16 @@ function App() {
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-baseline gap-x-4">
                       <h3 className="text-xl font-semibold">{entry.organization}</h3>
-                      <span className="text-gray-500">{entry.location}</span>
+                      <span className="text-faint">{entry.location}</span>
                     </div>
                     <div className="mt-6 space-y-8">
                       {entry.roles.map((role) => (
                         <div key={`${role.role}-${role.duration}`}>
                           <div className="flex flex-wrap items-baseline gap-x-4">
-                            <h4 className={`text-lg font-medium ${muted}`}>{role.role}</h4>
-                            <span className="text-gray-500">{role.duration}</span>
+                            <h4 className={`text-lg font-semibold ${muted}`}>{role.role}</h4>
+                            <span className="text-faint">{role.duration}</span>
                           </div>
-                          <p className={`mt-3 ${body}`}>{role.description}</p>
+                          <p className={`mt-3 max-w-[70ch] ${body}`}>{role.description}</p>
                         </div>
                       ))}
                     </div>
@@ -389,13 +389,13 @@ function App() {
                 <Coffee className={`w-12 h-12 ${accent}`} aria-hidden="true" />
               </div>
               <h2 className="text-3xl font-bold mb-6">Let’s Connect</h2>
-              <p className={`mb-8 ${muted}`}>
+              <p className={`mb-8 max-w-[65ch] mx-auto ${muted}`}>
                 I’m always interested in hearing about new projects and opportunities.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a
                   href={`mailto:${personal.email}`}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium bg-green-600 text-white hover:bg-green-700 dark:bg-green-400 dark:text-black dark:hover:bg-green-300 transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-fill text-on-fill hover:bg-fill-hover transition-colors"
                 >
                   <Mail className="w-4 h-4" aria-hidden="true" />
                   Get in Touch
