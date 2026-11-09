@@ -18,7 +18,7 @@
   },
   "skills": [
     {
-      "category": "Languages & Tooling",
+      "category": "Languages & Data",
       "icon": "Code",
       "groups": [
         {
@@ -29,37 +29,18 @@
             "Java",
             "C++",
             "Rust",
-            "Swift",
-            "SQL",
-            "JavaScript",
-            "Bash",
-            "Rego"
+            "SQL"
           ]
         },
         {
-          "label": "Build and dev",
+          "label": "Data",
           "items": [
-            "Vite",
-            "CMake",
-            "VS Code",
-            "IntelliJ IDEA"
-          ]
-        },
-        {
-          "label": "Version control and CI/CD",
-          "items": [
-            "Git",
-            "GitHub",
-            "GitHub Actions",
-            "Jenkins"
-          ]
-        },
-        {
-          "label": "Engineering",
-          "items": [
-            "Jira",
-            "Postman",
-            "Insomnia"
+            "PostgreSQL",
+            "PostGIS",
+            "Redis",
+            "SQLite",
+            "Ingestion pipelines",
+            "Data quality gates"
           ]
         }
       ]
@@ -74,100 +55,44 @@
             "Agentic workflows",
             "LLM orchestration",
             "RAG",
+            "LLM evaluation",
             "LangChain",
             "OpenAI SDK",
-            "Groq",
             "Ollama"
           ]
         },
         {
-          "label": "Models and training",
+          "label": "Models and inference",
           "items": [
             "PyTorch",
             "ONNX Runtime",
             "TensorRT",
             "llama.cpp",
-            "NNUE",
-            "TensorFlow",
-            "HuggingFace"
-          ]
-        },
-        {
-          "label": "Document AI",
-          "items": [
-            "Tesseract OCR",
-            "Structured extraction"
-          ]
-        },
-        {
-          "label": "GPU and performance",
-          "items": [
             "CUDA",
-            "NVML",
-            "MFU profiling",
-            "p50/p99 latency benchmarking"
+            "OCR pipelines"
           ]
         }
       ]
     },
     {
-      "category": "Backend & Data",
-      "icon": "Database",
+      "category": "Backend, Frontend & Mobile",
+      "icon": "Layers",
       "groups": [
         {
           "label": "Backend",
           "items": [
             "Spring Boot",
             "FastAPI",
-            "Node.js",
-            "REST APIs",
-            "WebSocket"
+            "Node.js"
           ]
         },
-        {
-          "label": "Databases",
-          "items": [
-            "PostgreSQL",
-            "PostGIS",
-            "MySQL",
-            "MongoDB",
-            "Redis",
-            "SQLite",
-            "IndexedDB"
-          ]
-        },
-        {
-          "label": "Data engineering",
-          "items": [
-            "Ingestion pipelines",
-            "Open data (Wikidata, OpenStreetMap)",
-            "Data quality gates",
-            "SQLAlchemy"
-          ]
-        },
-        {
-          "label": "Testing",
-          "items": [
-            "JUnit",
-            "Mockito",
-            "Pytest",
-            "Catch2"
-          ]
-        }
-      ]
-    },
-    {
-      "category": "Frontend, Mobile & Cloud",
-      "icon": "Layers",
-      "groups": [
         {
           "label": "Frontend",
           "items": [
             "React",
             "Next.js",
             "Angular",
-            "Tailwind CSS",
-            "Streamlit"
+            "Tailwind CSS"
           ]
         },
         {
@@ -177,23 +102,33 @@
             "PWA",
             "Local-first architecture"
           ]
-        },
+        }
+      ]
+    },
+    {
+      "category": "Cloud & Infrastructure",
+      "icon": "Cpu",
+      "groups": [
         {
-          "label": "Cloud and infrastructure",
+          "label": "Cloud",
           "items": [
             "AWS (Lambda, S3, EC2)",
-            "Azure",
+            "Azure"
+          ]
+        },
+        {
+          "label": "Containers and IaC",
+          "items": [
             "Docker",
             "Kubernetes",
             "Terraform"
           ]
         },
         {
-          "label": "Deployment",
+          "label": "Delivery and policy",
           "items": [
-            "Vercel",
-            "Render",
-            "GitHub Pages"
+            "GitHub Actions",
+            "Policy as code (Rego)"
           ]
         }
       ]
