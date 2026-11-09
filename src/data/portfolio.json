@@ -24,35 +24,34 @@
         {
           "label": "Languages",
           "items": [
-            "C++",
             "Python",
-            "Java",
-            "Rust",
-            "JavaScript",
             "TypeScript",
-            "Bash"
+            "Java",
+            "C++",
+            "Rust",
+            "Swift",
+            "SQL",
+            "JavaScript",
+            "Bash",
+            "Rego"
           ]
         },
         {
           "label": "Build and dev",
           "items": [
+            "Vite",
             "CMake",
             "VS Code",
             "IntelliJ IDEA"
           ]
         },
         {
-          "label": "Version control",
+          "label": "Version control and CI/CD",
           "items": [
             "Git",
-            "GitHub"
-          ]
-        },
-        {
-          "label": "CI/CD",
-          "items": [
-            "Jenkins",
-            "GitHub Actions"
+            "GitHub",
+            "GitHub Actions",
+            "Jenkins"
           ]
         },
         {
@@ -66,34 +65,84 @@
       ]
     },
     {
-      "category": "Frameworks & Infrastructure",
-      "icon": "Layers",
+      "category": "AI & Agentic Systems",
+      "icon": "Brain",
+      "groups": [
+        {
+          "label": "Agentic and LLM",
+          "items": [
+            "Agentic workflows",
+            "LLM orchestration",
+            "RAG",
+            "LangChain",
+            "OpenAI SDK",
+            "Groq",
+            "Ollama"
+          ]
+        },
+        {
+          "label": "Models and training",
+          "items": [
+            "PyTorch",
+            "ONNX Runtime",
+            "TensorRT",
+            "llama.cpp",
+            "NNUE",
+            "TensorFlow",
+            "HuggingFace"
+          ]
+        },
+        {
+          "label": "Document AI",
+          "items": [
+            "Tesseract OCR",
+            "Structured extraction"
+          ]
+        },
+        {
+          "label": "GPU and performance",
+          "items": [
+            "CUDA",
+            "NVML",
+            "MFU profiling",
+            "p50/p99 latency benchmarking"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Backend & Data",
+      "icon": "Database",
       "groups": [
         {
           "label": "Backend",
           "items": [
             "Spring Boot",
             "FastAPI",
-            "Node.js"
+            "Node.js",
+            "REST APIs",
+            "WebSocket"
           ]
         },
         {
-          "label": "Frontend",
+          "label": "Databases",
           "items": [
-            "React",
-            "Vite",
-            "Angular"
+            "PostgreSQL",
+            "PostGIS",
+            "MySQL",
+            "MongoDB",
+            "Redis",
+            "SQLite",
+            "IndexedDB"
           ]
         },
         {
-          "label": "AI/ML",
+          "label": "Data engineering",
           "items": [
-            "PyTorch",
-            "TensorFlow",
-            "LangChain",
-            "HuggingFace",
-            "OpenAI SDK",
-            "ONNX Runtime"
+            "Ingestion pipelines",
+            "Open data (Wikidata, OpenStreetMap)",
+            "Data quality gates",
+            "SQLAlchemy"
           ]
         },
         {
@@ -104,24 +153,47 @@
             "Pytest",
             "Catch2"
           ]
-        },
+        }
+      ]
+    },
+    {
+      "category": "Frontend, Mobile & Cloud",
+      "icon": "Layers",
+      "groups": [
         {
-          "label": "Databases",
+          "label": "Frontend",
           "items": [
-            "PostgreSQL",
-            "MySQL",
-            "MongoDB",
-            "Redis",
-            "SQLite"
+            "React",
+            "Next.js",
+            "Angular",
+            "Tailwind CSS",
+            "Streamlit"
           ]
         },
         {
-          "label": "Cloud and infra",
+          "label": "Mobile and offline",
+          "items": [
+            "Capacitor",
+            "PWA",
+            "Local-first architecture"
+          ]
+        },
+        {
+          "label": "Cloud and infrastructure",
           "items": [
             "AWS (Lambda, S3, EC2)",
             "Azure",
             "Docker",
-            "Kubernetes"
+            "Kubernetes",
+            "Terraform"
+          ]
+        },
+        {
+          "label": "Deployment",
+          "items": [
+            "Vercel",
+            "Render",
+            "GitHub Pages"
           ]
         }
       ]
